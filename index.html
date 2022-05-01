@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function computerPlay() {
+            let compSelect;
+            let ranNum = Math.floor(Math.random() * 4) + 1;
+            
+            if (ranNum == 1) {
+                compSelect = 'Rock';
+            } else if (ranNum == 2) {
+                compSelect = 'Paper';
+            } else {
+                compSelect = 'Scissors';
+            }
+            return compSelect;
+        }
+        console.log(computerPlay());
+    </script>
+</head>
+<body>
+    <button>Start Game</button>
+</body>
+</html>

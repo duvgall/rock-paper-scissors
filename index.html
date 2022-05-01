@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
+            let userScore = 0;
+            let compScore = 0;
+            let winner;
+
+
+
         function computerPlay() {
             let compSelect;
             let ranNum = Math.floor(Math.random() * 4) + 1; //randomly create a number between 1 and 3
@@ -25,20 +31,19 @@
             computerSelection = computerPlay();
             playerChoice = prompt("Please enter your choice");                           // prompt for user input
             let playerSelection = playerChoice.toLowerCase();                            // player selection should be case insensitive
-            let winner;
 
-            if (computerSelection == "Rock" && playerSelection == "paper") {
-                    winner = "Paper beats Rock. You win this round!";
+            if (computerSelection == "Rock" && playerSelection == "paper") {             // need to add the explanation x beats y for each outcome
+                    winner = "You win this round!";             
             } else if (computerSelection == "Rock" && playerSelection == "scissors"){
-                    winner = "Rock beats Scissors. Computer wins this round!";
+                    winner = "Computer wins this round!";
             } else if (computerSelection == "Paper" && playerSelection == "rock"){
-                    winner = "Paper beats Rock. Computer wins this round!";
+                    winner = "Computer wins this round!";
             } else if (computerSelection == "Paper" && playerSelection == "scissors"){
-                    winner = "Scissors beats Paper. You win this round!";
+                    winner = "You win this round!";
             } else if (computerSelection == "Scissors" && playerSelection == "paper"){
-                    winner = "Scissors beats Paper. Computer wins this round!";
+                    winner = "Computer wins this round!";
             } else if (computerSelection == "Scissors" && playerSelection == "rock"){
-                    winner = "Rock beats Scissors. You win this round!";
+                    winner = "You win this round!";
             } else if (computerSelection == "Scissors" && playerSelection == "scissors"){
                     winner = "Draw!";
             } else if (computerSelection == "Rock" && playerSelection == "rock"){
@@ -51,14 +56,37 @@
             return winner;;
         }
         
-        console.log(playRound())
+
+        function game() {
+          let result;
+                for (let i = 0; i < 5; i++) {
+                        result = playRound();
+                        console.log(result);                                    //print result to console after each round.
+
+                        if (winner == "You win this round!") {
+                                userScore++;                                    // increment user score
+                        }
+                        else if (winner == "Computer wins this round!") {
+                                compScore++;                                    // increment computer score
+                        };
+
+                }
+                if (compScore > userScore) {
+                        alert("You lose!");
+                }
+                else if (userScore > compScore) {
+                        alert ("You are the champion!");
+                } else {
+                        alert ("It's a tie!");
+                };
+                console.log(userScore);
+                console.log(compScore);
+        }
+
+        console.log(game());
         
 
-        // test playRound function
-
-        // play game function that plays 5 rounds, keep score and reports a winner and loser at the end
-
-        // use console.log to print the result after each round
+        
     </script>
 </head>
 <body>

@@ -19,20 +19,46 @@
             }
             return compSelect;
         }
-        console.log(computerPlay());
+  
+        
+        function playRound(playerChoice, computerSelection) {                            // function taking two parameters, playerselection and computer selection. Plays 1 round of Rock, Paper Scissors and return the result with a string 
+            computerSelection = computerPlay();
+            playerChoice = prompt("Please enter your choice");                           // prompt for user input
+            let playerSelection = playerChoice.toLowerCase();                            // player selection should be case insensitive
+            let winner;
 
-        // function taking two parameters, playerselection and computer selection. Plays 1 round of Rock, Paper Scissors and return the result with a string 
-
-        // player selection should be case insensitive
+            if (computerSelection == "Rock" && playerSelection == "paper") {
+                    winner = "Paper beats Rock. You win this round!";
+            } else if (computerSelection == "Rock" && playerSelection == "scissors"){
+                    winner = "Rock beats Scissors. Computer wins this round!";
+            } else if (computerSelection == "Paper" && playerSelection == "rock"){
+                    winner = "Paper beats Rock. Computer wins this round!";
+            } else if (computerSelection == "Paper" && playerSelection == "scissors"){
+                    winner = "Scissors beats Paper. You win this round!";
+            } else if (computerSelection == "Scissors" && playerSelection == "paper"){
+                    winner = "Scissors beats Paper. Computer wins this round!";
+            } else if (computerSelection == "Scissors" && playerSelection == "rock"){
+                    winner = "Rock beats Scissors. You win this round!";
+            } else if (computerSelection == "Scissors" && playerSelection == "scissors"){
+                    winner = "Draw!";
+            } else if (computerSelection == "Rock" && playerSelection == "rock"){
+                    winner = "Draw!";
+            } else if (computerSelection == "Paper" && playerSelection == "paper"){
+                    winner ="Draw!";
+            } else {
+                    winner = "Oops! Something went wrong."
+            }
+            return winner;;
+        }
+        
+        console.log(playRound())
+        
 
         // test playRound function
 
         // play game function that plays 5 rounds, keep score and reports a winner and loser at the end
 
         // use console.log to print the result after each round
-
-
-        // use prompt to get user input
     </script>
 </head>
 <body>

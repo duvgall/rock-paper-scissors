@@ -5,91 +5,123 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script>
-            let userScore = 0;
-            let compScore = 0;
-            let winner;
-
-
-
-        function computerPlay() {
-            let compSelect;
-            let ranNum = Math.floor(Math.random() * 4) + 1; //randomly create a number between 1 and 3
-            
-            if (ranNum == 1) {
-                compSelect = 'Rock';
-            } else if (ranNum == 2) {
-                compSelect = 'Paper';
-            } else {
-                compSelect = 'Scissors';
-            }
-            return compSelect;
-        }
-  
-        
-        function playRound(playerChoice, computerSelection) {                            // function taking two parameters, playerselection and computer selection. Plays 1 round of Rock, Paper Scissors and return the result with a string 
-            computerSelection = computerPlay();
-            playerChoice = prompt("Please enter your choice");                           // prompt for user input
-            let playerSelection = playerChoice.toLowerCase();                            // player selection should be case insensitive
-
-            if (computerSelection == "Rock" && playerSelection == "paper") {             // need to add the explanation x beats y for each outcome
-                    winner = "You win this round!";             
-            } else if (computerSelection == "Rock" && playerSelection == "scissors"){
-                    winner = "Computer wins this round!";
-            } else if (computerSelection == "Paper" && playerSelection == "rock"){
-                    winner = "Computer wins this round!";
-            } else if (computerSelection == "Paper" && playerSelection == "scissors"){
-                    winner = "You win this round!";
-            } else if (computerSelection == "Scissors" && playerSelection == "paper"){
-                    winner = "Computer wins this round!";
-            } else if (computerSelection == "Scissors" && playerSelection == "rock"){
-                    winner = "You win this round!";
-            } else if (computerSelection == "Scissors" && playerSelection == "scissors"){
-                    winner = "Draw!";
-            } else if (computerSelection == "Rock" && playerSelection == "rock"){
-                    winner = "Draw!";
-            } else if (computerSelection == "Paper" && playerSelection == "paper"){
-                    winner ="Draw!";
-            } else {
-                    winner = "Oops! Something went wrong."
-            }
-            return winner;;
-        }
-        
-
-        function game() {
-          let result;
-                for (let i = 0; i < 5; i++) {
-                        result = playRound();
-                        console.log(result);                                    //print result to console after each round.
-
-                        if (winner == "You win this round!") {
-                                userScore++;                                    // increment user score
-                        }
-                        else if (winner == "Computer wins this round!") {
-                                compScore++;                                    // increment computer score
-                        };
-
-                }
-                if (compScore > userScore) {
-                        alert("You lose!");
-                }
-                else if (userScore > compScore) {
-                        alert ("You are the champion!");
-                } else {
-                        alert ("It's a tie!");
-                };
-                console.log(userScore);
-                console.log(compScore);
-        }
-
-        console.log(game());
-        
-
-        
-    </script>
 </head>
 <body>
-    <button>Start Game</button>
+    <script>
+        let userScore = 0;
+        let compScore = 0;
+        let winner;
+        let playerChoice = '';
+
+
+
+    function computerPlay() {
+        let compSelect;
+        let ranNum = Math.floor(Math.random() * 4) + 1; //randomly create a number between 1 and 3
+        
+        if (ranNum == 1) {
+            compSelect = 'Rock';
+        } else if (ranNum == 2) {
+            compSelect = 'Paper';
+        } else {
+            compSelect = 'Scissors';
+        }
+        return compSelect;
+    }
+
+    
+    function playRound(playerChoice, computerSelection) {                            // function taking two parameters, playerselection and computer selection. Plays 1 round of Rock, Paper Scissors and return the result with a string 
+        computerSelection = computerPlay();                                          // prompt for user input
+        let playerSelection = playerChoice;
+
+        if (computerSelection == "Rock" && playerSelection == "paper") {             // need to add the explanation x beats y for each outcome
+                winner = "You win this round!";             
+        } else if (computerSelection == "Rock" && playerSelection == "scissors"){
+                winner = "Computer wins this round!";
+        } else if (computerSelection == "Paper" && playerSelection == "rock"){
+                winner = "Computer wins this round!";
+        } else if (computerSelection == "Paper" && playerSelection == "scissors"){
+                winner = "You win this round!";
+        } else if (computerSelection == "Scissors" && playerSelection == "paper"){
+                winner = "Computer wins this round!";
+        } else if (computerSelection == "Scissors" && playerSelection == "rock"){
+                winner = "You win this round!";
+        } else if (computerSelection == "Scissors" && playerSelection == "scissors"){
+                winner = "Draw!";
+        } else if (computerSelection == "Rock" && playerSelection == "rock"){
+                winner = "Draw!";
+        } else if (computerSelection == "Paper" && playerSelection == "paper"){
+                winner ="Draw!";
+        } else {
+                winner = "Oops! Something went wrong."
+        }
+        return winner;
+        console.log(winner)
+;    }
+    
+
+    /*function game() {
+      let result;
+            for (let i = 0; i < 5; i++) {
+                    result = playRound();
+                    console.log(result);                                    //print result to console after each round.
+
+                    if (winner == "You win this round!") {
+                            userScore++;                                    // increment user score
+                    }
+                    else if (winner == "Computer wins this round!") {
+                            compScore++;                                    // increment computer score
+                    };
+
+            }
+            if (compScore > userScore) {
+                    alert("You lose!");
+            }
+            else if (userScore > compScore) {
+                    alert ("You are the champion!");
+            } else {
+                    alert ("It's a tie!");
+            };
+            console.log(userScore);
+            console.log(compScore);
+    }
+
+    console.log(game()); */
+    const container = document.createElement('div');
+    container.style.backgroundColor = "blue";
+    container.textContent = 'test';
+    document.body.appendChild(container);
+
+
+
+   const rockBtn = document.createElement('button')
+   rockBtn.textContent ="Rock"
+   rockBtn.addEventListener("click", () => {
+           playerChoice == "rock"
+        });
+   rockBtn.addEventListener("click", playRound);
+  
+   const paperBtn = document.createElement('button')
+   paperBtn.textContent ="Paper"
+   paperBtn.addEventListener("click", () => {
+           playerChoice == "paper"
+        });
+   paperBtn.addEventListener("click", playRound);
+   
+   const scissorsBtn = document.createElement('button')
+   scissorsBtn.textContent ="Scissors"
+   scissorsBtn.addEventListener("click", () => {
+           playerChoice == "scissors"
+        });
+   scissorsBtn.addEventListener("click", playRound);
+
+   container.appendChild(rockBtn);
+   container.appendChild(paperBtn);
+   container.appendChild(scissorsBtn);
+
+
+
+    
+</script>
 </body>
 </html>

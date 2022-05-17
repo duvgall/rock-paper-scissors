@@ -7,13 +7,25 @@
     <title>Document</title>
 </head>
 <body>
+      <div id="container">
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+      </div>
+      <div id="score"></div>
+
     <script>
         let userScore = 0;
         let compScore = 0;
         let winner;
-        let playerChoice = '';
+        const buttons = document.querySelectorAll('button');
+        let score = document.getElementById('score');
 
-
+    function disablebtns() {
+            buttons.forEach(elem => {
+                    elem.disabled = true;
+            });
+    }
 
     function computerPlay() {
         let compSelect;
@@ -30,35 +42,67 @@
     }
 
     
-    function playRound(playerChoice, computerSelection) {                            // function taking two parameters, playerselection and computer selection. Plays 1 round of Rock, Paper Scissors and return the result with a string 
-        computerSelection = computerPlay();                                          // prompt for user input
-        let playerSelection = playerChoice;
+    function playRound(playerSelection) {                            // function taking two parameters, playerselection and computer selection. Plays 1 round of Rock, Paper Scissors and return the result with a string 
+        let computerSelection = computerPlay();                                          // prompt for user input
+        
 
         if (computerSelection == "Rock" && playerSelection == "paper") {             // need to add the explanation x beats y for each outcome
-                winner = "You win this round!";             
+                winner = `You win! ${playerSelection} beats ${computerSelection}`;
+                userScore += 1; 
+                score.textContent = `${winner} \n Player: ${userScore} \n Computer: ${compScore}`;         
         } else if (computerSelection == "Rock" && playerSelection == "scissors"){
-                winner = "Computer wins this round!";
+                winner = `You lose! ${computerSelection} beats ${playerSelection}`;
+                compScore += 1;
+                score.textContent = `${winner} \n Player: ${userScore} \n Computer: ${compScore}`;
         } else if (computerSelection == "Paper" && playerSelection == "rock"){
-                winner = "Computer wins this round!";
+                winner = `You lose! ${computerSelection} beats ${playerSelection}`;
+                compScore += 1;
+                score.textContent = `${winner} \n Player: ${userScore} \n Computer: ${compScore}`;
         } else if (computerSelection == "Paper" && playerSelection == "scissors"){
-                winner = "You win this round!";
+                winner = `You win! ${playerSelection} beats ${computerSelection}`;
+                userScore += 1; 
+                score.textContent = `${winner} \n Player: ${userScore} \n Computer: ${compScore}`;
         } else if (computerSelection == "Scissors" && playerSelection == "paper"){
-                winner = "Computer wins this round!";
+                winner = `You lose! ${computerSelection} beats ${playerSelection}`;
+                compScore += 1;
+                score.textContent = `${winner} \n Player: ${userScore} \n Computer: ${compScore}`;
         } else if (computerSelection == "Scissors" && playerSelection == "rock"){
-                winner = "You win this round!";
+                winner = `You win! ${playerSelection} beats ${computerSelection}`;
+                userScore += 1;
+                score.textContent = `${winner} \n Player: ${userScore} \n Computer: ${compScore}`;
         } else if (computerSelection == "Scissors" && playerSelection == "scissors"){
                 winner = "Draw!";
+                userScore += 1; 
+                compScore += 1;
+                score.textContent = `${winner} \n Player: ${userScore} \n Computer: ${compScore}`;
         } else if (computerSelection == "Rock" && playerSelection == "rock"){
                 winner = "Draw!";
+                userScore += 1; 
+                compScore += 1;
+                score.textContent = `${winner} \n Player: ${userScore} \n Computer: ${compScore}`;
         } else if (computerSelection == "Paper" && playerSelection == "paper"){
                 winner ="Draw!";
+                userScore += 1; 
+                compScore += 1;
+                score.textContent = `${winner} \n Player: ${userScore} \n Computer: ${compScore}`;
+                
         } else {
                 winner = "Oops! Something went wrong."
         }
-        return winner;
-        console.log(winner)
-;    }
-    
+
+
+        if (userScore === 5) {
+                score.textContent = 'Game over. You win!';
+                disablebtns();
+               
+        } else if (compScore === 5) {
+                score.textContent = 'Game over. You lose!';
+                disablebtns();
+
+        }
+        
+}
+
 
     /*function game() {
       let result;
@@ -87,41 +131,13 @@
     }
 
     console.log(game()); */
-    const container = document.createElement('div');
-    container.style.backgroundColor = "blue";
-    container.textContent = 'test';
-    document.body.appendChild(container);
 
+    buttons.forEach(button => {                                             // run playRound when any of the buttons are clicked and use value of button as user input
+                button.addEventListener('click', function(){
+                        playRound(button.id)
+                })
+    })
 
-
-   const rockBtn = document.createElement('button')
-   rockBtn.textContent ="Rock"
-   rockBtn.addEventListener("click", () => {
-           playerChoice == "rock"
-        });
-   rockBtn.addEventListener("click", playRound);
-  
-   const paperBtn = document.createElement('button')
-   paperBtn.textContent ="Paper"
-   paperBtn.addEventListener("click", () => {
-           playerChoice == "paper"
-        });
-   paperBtn.addEventListener("click", playRound);
-   
-   const scissorsBtn = document.createElement('button')
-   scissorsBtn.textContent ="Scissors"
-   scissorsBtn.addEventListener("click", () => {
-           playerChoice == "scissors"
-        });
-   scissorsBtn.addEventListener("click", playRound);
-
-   container.appendChild(rockBtn);
-   container.appendChild(paperBtn);
-   container.appendChild(scissorsBtn);
-
-
-
-    
 </script>
 </body>
 </html>
